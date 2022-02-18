@@ -1,9 +1,9 @@
 const connection = require('../connection');
 
-module.exports = async (collection, findConfig = {}, sortConfig = {}) => {
+module.exports = async (collection, filterConfig = {}, attributesConfig = {}, sortConfig = {}) => {
   const entities = (await connection())
     .collection(collection)
-    .find(findConfig)
+    .find(filterConfig, attributesConfig)
     .sort(sortConfig)
     .toArray();
 
