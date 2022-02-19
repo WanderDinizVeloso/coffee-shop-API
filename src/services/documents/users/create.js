@@ -3,14 +3,23 @@ const { hash } = require('bcrypt');
 const { BCRYPT_SALT_ROUNDS } = process.env;
 
 const { USERS, USER } = require('../../../utils/strings');
-const { create, searchByField, searchById } = require('../../../models')(USERS);
+const { create, search } = require('../../../models')(USERS);
 const { stringInNumber } = require('../../functions');
 const { ATTRIBUTE_DISABLED } = require('../../../utils/magicNumbers');
 
-module.exports = async ({ fullName, email, password }) => {
-  const userExistsOnDatabase = await searchByField({ email });
+const userExistsOnDatabasePipeline = (email) => ([
+  { $match: { email } },
+]);
 
-  if (userExistsOnDatabase) {
+const newUserWithoutPasswordPipeline = (id) => ([
+  { $match: { _id: id } },
+  { $project: { password: ATTRIBUTE_DISABLED } },
+]);
+
+module.exports = async ({ fullName, email, password }) => {
+  const userExistsOnDatabase = await search(userExistsOnDatabasePipeline(email));
+
+  if (userExistsOnDatabase[0]) {
     return null;
   }
 
@@ -20,7 +29,7 @@ module.exports = async ({ fullName, email, password }) => {
 
   const { insertedId } = await create(userWithHashedPasswordAndRole);
 
-  const newUserWithoutPassword = await searchById(insertedId, { password: ATTRIBUTE_DISABLED });
+  const newUserWithoutPassword = await search(newUserWithoutPasswordPipeline(insertedId));
 
-  return newUserWithoutPassword;
+  return newUserWithoutPassword[0];
 };
