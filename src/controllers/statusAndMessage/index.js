@@ -3,6 +3,9 @@ const { BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, CONFLICT } = require('http-status-
 const createdSuccessfully = (param) =>
   `'${param}' created successfully.`;
 
+const deletedSuccessfully = (param) =>
+`'${param}' deleted successfully,`;
+
 const internalError = () =>
   'sorry, internal error.';
 
@@ -33,4 +36,5 @@ module.exports = {
   unauthorized,
   createdSuccessfully,
   registered,
+  deletedSuccessfully,
 };
