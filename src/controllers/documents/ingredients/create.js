@@ -5,9 +5,9 @@ const { createdSuccessfully, registered } = require('../../statusAndMessage');
 const { INGREDIENT } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
-  const { name, unitary, price } = req.body;
+  const { name, unity, price } = req.body;
 
-  const created = await create({ name, unitary, price });
+  const created = await create({ name, unity, price });
 
   if (!created) {
     return next(registered(INGREDIENT));

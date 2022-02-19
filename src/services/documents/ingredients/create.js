@@ -8,7 +8,7 @@ const {
   DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY, INITIAL_QUANTITY,
 } = require('../../../utils/magicNumbers');
 
-module.exports = async ({ name, unitary, price }) => {
+module.exports = async ({ name, unity, price }) => {
   const ingredientExistsOnDatabase = (await search(filterField({ name })))[0];
 
   if (ingredientExistsOnDatabase) {
@@ -17,7 +17,7 @@ module.exports = async ({ name, unitary, price }) => {
 
   const { insertedId } = await create({
     name,
-    unitary,
+    unity,
     quantity: setDecimalPlaces(INITIAL_QUANTITY, DECIMAL_PLACES_QUANTITY),
     price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
   });

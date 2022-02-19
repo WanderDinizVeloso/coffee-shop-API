@@ -8,7 +8,7 @@ const {
   DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY, INITIAL_QUANTITY,
 } = require('../../../utils/magicNumbers');
 
-module.exports = async ({ id: _id, name, unitary, price }) => {
+module.exports = async ({ id: _id, name, unity, price }) => {
   const ingredient = (await search(filterField({ _id: ObjectId(_id) })))[0];
 
   if (!ingredient) {
@@ -23,7 +23,7 @@ module.exports = async ({ id: _id, name, unitary, price }) => {
   
   await update({
     name,
-    unitary,
+    unity,
     quantity: setDecimalPlaces(INITIAL_QUANTITY, DECIMAL_PLACES_QUANTITY),
     price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
   });
