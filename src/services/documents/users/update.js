@@ -3,12 +3,12 @@ const { hash } = require('bcrypt');
 const { BCRYPT_SALT_ROUNDS } = process.env;
 
 const { USERS } = require('../../../utils/strings');
-const { update, searchById } = require('../../../models')(USERS);
+const { update, search } = require('../../../models')(USERS);
 const { stringInNumber } = require('../../functions');
-const { ATTRIBUTE_DISABLED } = require('../../../utils/magicNumbers');
+const { filterField, filterUserWithoutPassword } = require('../../../utils/pipelines');
 
 module.exports = async ({ id: _id, fullName, email, password }) => {
-  const userExistsOnDatabase = await searchById(_id, { password: ATTRIBUTE_DISABLED });
+  const userExistsOnDatabase = (await search(filterField({ email })))[0];
 
   if (!userExistsOnDatabase) {
     return null;
@@ -18,7 +18,7 @@ module.exports = async ({ id: _id, fullName, email, password }) => {
 
   await update({ _id, fullName, email, password: hashedPassword });
 
-  const newUserDataWithoutPassword = await searchById(_id, { password: ATTRIBUTE_DISABLED });
+  const newUserDataWithoutPassword = (await search(filterUserWithoutPassword({ _id })))[0];
 
   return { newUserData: newUserDataWithoutPassword };
 };
