@@ -3,7 +3,7 @@ const { remove, searchById } = require('../../../models')(USERS);
 const { create } = require('../../../models')(TOKENS);
 const { ATTRIBUTE_DISABLED } = require('../../../utils/magicNumbers');
 
-module.exports = async (id, role, token) => {
+module.exports = async ({ id, role, token }) => {
   const user = await searchById(id, { password: ATTRIBUTE_DISABLED });
 
   if (!user) {
