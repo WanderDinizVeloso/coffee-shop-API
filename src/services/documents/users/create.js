@@ -1,4 +1,5 @@
 const { hash } = require('bcrypt');
+const { ObjectId } = require('mongodb');
 
 const { BCRYPT_SALT_ROUNDS } = process.env;
 
@@ -20,7 +21,9 @@ module.exports = async ({ fullName, email, password }) => {
 
   const { insertedId } = await create(userWithHashedPasswordAndRole);
 
-  const newUserWithoutPassword = (await search(filterUserWithoutPassword({ _id: insertedId })))[0];
+  const newUserWithoutPassword = (
+    await search(filterUserWithoutPassword({ _id: ObjectId(insertedId) }))
+  )[0];
 
   return newUserWithoutPassword;
 };
