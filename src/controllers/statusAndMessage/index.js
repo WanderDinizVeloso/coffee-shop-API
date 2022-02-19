@@ -6,6 +6,9 @@ const createdSuccessfully = (param) =>
 const deletedSuccessfully = (param) =>
 `'${param}' deleted successfully,`;
 
+const modifiedSuccessfully = (param) =>
+  `'${param}' modified successfully.`;
+
 const internalError = () =>
   'sorry, internal error.';
 
@@ -37,4 +40,5 @@ module.exports = {
   createdSuccessfully,
   registered,
   deletedSuccessfully,
+  modifiedSuccessfully,
 };
