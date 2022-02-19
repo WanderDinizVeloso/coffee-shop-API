@@ -3,14 +3,14 @@ const { remove, search } = require('../../../models')(USERS);
 const { create } = require('../../../models')(TOKENS);
 const { filterField } = require('../../../utils/pipelines');
 
-module.exports = async ({ id, role, token }) => {
-  const user = (await search(filterField({ _id: id })))[0];
+module.exports = async ({ id: _id, role, token }) => {
+  const user = (await search(filterField({ _id })))[0];
 
   if (!user) {
     return null;
   }
 
-  await remove(id);
+  await remove(_id);
 
   if (role !== ADMIN) {
     await create({ token });
