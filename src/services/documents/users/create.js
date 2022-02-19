@@ -5,19 +5,10 @@ const { BCRYPT_SALT_ROUNDS } = process.env;
 const { USERS, USER } = require('../../../utils/strings');
 const { create, search } = require('../../../models')(USERS);
 const { stringInNumber } = require('../../functions');
-const { ATTRIBUTE_DISABLED } = require('../../../utils/magicNumbers');
-
-const userExistsOnDatabasePipeline = (email) => ([
-  { $match: { email } },
-]);
-
-const newUserWithoutPasswordPipeline = (id) => ([
-  { $match: { _id: id } },
-  { $project: { password: ATTRIBUTE_DISABLED } },
-]);
+const { filterField, filterUserWithoutPassword } = require('../../../utils/pipelines');
 
 module.exports = async ({ fullName, email, password }) => {
-  const userExistsOnDatabase = await search(userExistsOnDatabasePipeline(email));
+  const userExistsOnDatabase = await search(filterField({ email }));
 
   if (userExistsOnDatabase[0]) {
     return null;
@@ -29,7 +20,7 @@ module.exports = async ({ fullName, email, password }) => {
 
   const { insertedId } = await create(userWithHashedPasswordAndRole);
 
-  const newUserWithoutPassword = await search(newUserWithoutPasswordPipeline(insertedId));
+  const newUserWithoutPassword = await search(filterUserWithoutPassword({ _id: insertedId }));
 
   return newUserWithoutPassword[0];
 };
