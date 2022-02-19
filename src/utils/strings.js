@@ -10,6 +10,7 @@ const NEW_EMAIL = 'new_email';
 const INGREDIENT = 'ingredient';
 const INGREDIENTS = 'ingredients';
 const NAME_EXIST = 'name exist';
+const NEW_NAME = 'new_name';
 
 module.exports = {
   TOKEN,
@@ -24,4 +25,5 @@ module.exports = {
   INGREDIENTS,
   INGREDIENT,
   NAME_EXIST,
+  NEW_NAME,
 };
