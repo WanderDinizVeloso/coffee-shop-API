@@ -1,4 +1,7 @@
-const { BAD_REQUEST, NOT_FOUND, UNAUTHORIZED } = require('http-status-codes').StatusCodes;
+const { BAD_REQUEST, NOT_FOUND, UNAUTHORIZED, CONFLICT } = require('http-status-codes').StatusCodes;
+
+const createdSuccessfully = (param) =>
+  `'${param}' created successfully.`;
 
 const internalError = () =>
   'sorry, internal error.';
@@ -18,9 +21,16 @@ const unauthorized = () => ({
   message: 'Request not allowed for this user.',
 });
 
+const registered = (param) => ({
+  status: CONFLICT,
+  message: `'${param}' is already.`,
+});
+
 module.exports = {
   internalError,
   invalid,
   notFound,
   unauthorized,
+  createdSuccessfully,
+  registered,
 };
