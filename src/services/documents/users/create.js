@@ -8,9 +8,9 @@ const { stringInNumber } = require('../../functions');
 const { filterField, filterUserWithoutPassword } = require('../../../utils/pipelines');
 
 module.exports = async ({ fullName, email, password }) => {
-  const userExistsOnDatabase = await search(filterField({ email }));
+  const userExistsOnDatabase = (await search(filterField({ email })))[0];
 
-  if (userExistsOnDatabase[0]) {
+  if (userExistsOnDatabase) {
     return null;
   }
 
@@ -20,7 +20,7 @@ module.exports = async ({ fullName, email, password }) => {
 
   const { insertedId } = await create(userWithHashedPasswordAndRole);
 
-  const newUserWithoutPassword = await search(filterUserWithoutPassword({ _id: insertedId }));
+  const newUserWithoutPassword = (await search(filterUserWithoutPassword({ _id: insertedId })))[0];
 
-  return newUserWithoutPassword[0];
+  return newUserWithoutPassword;
 };
