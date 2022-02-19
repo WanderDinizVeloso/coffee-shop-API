@@ -1,8 +1,8 @@
 const { ObjectId } = require('mongodb');
 
-const { INGREDIENTS } = require('../../../utils/strings');
+const { INGREDIENTS, NAME_EXIST } = require('../../../utils/strings');
 const { search, update } = require('../../../models')(INGREDIENTS);
-const { setDecimalPlaces } = require('../../functions');
+const { setDecimalPlaces, checkNewNameOnDatabase } = require('../../functions');
 const { filterField } = require('../../../utils/pipelines');
 const {
   DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY, INITIAL_QUANTITY,
@@ -13,6 +13,12 @@ module.exports = async ({ id: _id, name, unitary, price }) => {
 
   if (!ingredient) {
     return null;
+  }
+
+  const newNameExistsOnDatabase = await checkNewNameOnDatabase(name, ingredient.name, search);
+
+  if (newNameExistsOnDatabase) {
+    return NAME_EXIST;
   }
   
   await update({
