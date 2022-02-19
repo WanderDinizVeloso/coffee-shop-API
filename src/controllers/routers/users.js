@@ -9,13 +9,13 @@ router.post('/', wrapper([
   create,
 ]));
 
-router.put('/', wrapper([
+router.put('/:id', wrapper([
   authentication,
   userAuthorization,
   update,
 ]));
 
-router.delete('/', wrapper([
+router.delete('/:id', wrapper([
   authentication,
   userAuthorization,
   remove,

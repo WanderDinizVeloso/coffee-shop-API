@@ -1,16 +1,18 @@
-const { USERS, TOKENS, ADMIN } = require('../../../utils/strings');
-const { remove, searchById } = require('../../../models')(USERS);
-const { create } = require('../../../models')(TOKENS);
-const { ATTRIBUTE_DISABLED } = require('../../../utils/magicNumbers');
+const { ObjectId } = require('mongodb');
 
-module.exports = async ({ id, role, token }) => {
-  const user = await searchById(id, { password: ATTRIBUTE_DISABLED });
+const { USERS, TOKENS, ADMIN } = require('../../../utils/strings');
+const { remove, search } = require('../../../models')(USERS);
+const { create } = require('../../../models')(TOKENS);
+const { filterField } = require('../../../utils/pipelines');
+
+module.exports = async ({ id: _id, role, token }) => {
+  const user = (await search(filterField({ _id: ObjectId(_id) })))[0];
 
   if (!user) {
     return null;
   }
 
-  await remove(id);
+  await remove(_id);
 
   if (role !== ADMIN) {
     await create({ token });

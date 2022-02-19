@@ -1,8 +1,8 @@
 const { OK } = require('http-status-codes').StatusCodes;
 
 const { update } = require('../../../services/documents/users');
-const { modifiedSuccessfully, notFound } = require('../../statusAndMessage');
-const { USER } = require('../../../utils/strings');
+const { modifiedSuccessfully, notFound, registered } = require('../../statusAndMessage');
+const { USER, EMAIL_EXIST, NEW_EMAIL } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
   const { id } = req.params;
@@ -12,6 +12,10 @@ module.exports = async (req, res, next) => {
 
   if (!updated) {
     return next(notFound(USER));
+  }
+
+  if (updated === EMAIL_EXIST) {
+    return next(registered(NEW_EMAIL));
   }
 
   return res
