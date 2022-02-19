@@ -3,14 +3,15 @@ const { verify } = require('jsonwebtoken');
 const { SECRET } = process.env;
 
 const { TOKENS } = require('../../utils/strings');
-const { searchByField } = require('../../models')(TOKENS);
+const { search } = require('../../models')(TOKENS);
+const { filterField } = require('../../utils/pipelines');
 
 module.exports = async (token) => {
   try {
     const decoded = verify(token, SECRET);
 
-    const existsOnTheBlacklist = await searchByField({ token });
-
+    const existsOnTheBlacklist = (await search(filterField({ token })))[0];
+  
     if (existsOnTheBlacklist) {
       return null;
     }
