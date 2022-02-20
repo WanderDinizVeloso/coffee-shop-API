@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
   const { host } = req.headers;
   const { imageName: image, protocol } = req;
 
-  const url = `${protocol}://${host}/images${image}`;
+  const url = `${protocol}://${host}/images/${image}`;
 
   const updated = await upload({ id, url });
 
