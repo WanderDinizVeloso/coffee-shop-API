@@ -20,7 +20,7 @@ module.exports = async ({ id: _id, name, price }) => {
   }
   
   await update({
-    _id,
+    ...product,
     name,
     price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
   });

@@ -23,7 +23,7 @@ module.exports = async ({ id: _id, fullName, email, password }) => {
 
   const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS));
 
-  await update({ _id, fullName, email, password: hashedPassword });
+  await update({ ...user, fullName, email, password: hashedPassword });
 
   const newUserDataWithoutPassword = (
     await search(filterUserWithoutPassword({ _id: ObjectId(_id) }))
