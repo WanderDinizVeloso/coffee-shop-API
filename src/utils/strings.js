@@ -11,6 +11,8 @@ const INGREDIENT = 'ingredient';
 const INGREDIENTS = 'ingredients';
 const NAME_EXIST = 'name exist';
 const NEW_NAME = 'new_name';
+const PRODUCT = 'product';
+const PRODUCTS = 'products';
 
 module.exports = {
   TOKEN,
@@ -26,4 +28,6 @@ module.exports = {
   INGREDIENT,
   NAME_EXIST,
   NEW_NAME,
+  PRODUCT,
+  PRODUCTS,
 };
