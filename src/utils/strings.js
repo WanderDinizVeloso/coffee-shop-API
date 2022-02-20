@@ -14,6 +14,7 @@ const NEW_NAME = 'new_name';
 const PRODUCT = 'product';
 const PRODUCTS = 'products';
 const IMAGE_STRING_SEPARATOR = '.';
+const IMAGE = 'image';
 
 module.exports = {
   TOKEN,
@@ -32,4 +33,5 @@ module.exports = {
   PRODUCT,
   PRODUCTS,
   IMAGE_STRING_SEPARATOR,
+  IMAGE,
 };
