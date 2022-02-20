@@ -3,6 +3,7 @@ const userAuthorization = require('./auth/userAuthorization');
 const authentication = require('./auth/authentication');
 const error = require('./error');
 const wrapper = require('./wrapper');
+const upload = require('./upload');
 
 module.exports = {
   admAuthorization,
@@ -10,4 +11,5 @@ module.exports = {
   authentication,
   error,
   wrapper,
+  upload,
 };
