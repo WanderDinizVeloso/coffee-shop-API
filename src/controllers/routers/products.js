@@ -1,7 +1,7 @@
 const express = require('express');
 
-const { create, remove, searchAll, searchById, update } = require('../documents/products');
-const { wrapper, authentication, admAuthorization } = require('../middlewares');
+const { create, remove, searchAll, searchById, update, upload } = require('../documents/products');
+const { wrapper, authentication, admAuthorization, upload: uploadMidd } = require('../middlewares');
 
 const router = express.Router({ mergeParams: true });
 
@@ -25,6 +25,13 @@ router.put('/:id', wrapper([
   authentication,
   admAuthorization,
   update,
+]));
+
+router.put('/:id/image', wrapper([
+  authentication,
+  admAuthorization,
+  uploadMidd.single('image'),
+  upload,
 ]));
 
 router.delete('/:id', wrapper([
