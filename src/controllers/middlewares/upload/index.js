@@ -28,20 +28,18 @@ const storageTypes = {
   }),
 };
 
-module.exports = async (_req, _res, next) => multer({
-  dest: destination,
-  storage: storageTypes[STORAGE_TYPE],
-  limits: {
-    fileSize: IMAGE_MAX_SIZE,
-  },
-  fileFilter: (_reqFile, file, callback) => {
-    const allowedMimes = imageTypeList;
+module.exports = multer({
+    dest: destination,
+    storage: storageTypes[STORAGE_TYPE],
+    limits: {
+      fileSize: IMAGE_MAX_SIZE,
+    },
+    fileFilter: (_reqFile, file, callback) => {
+      const allowedMimes = imageTypeList;
 
-    if (allowedMimes.includes(file.mimetype)) {
-      callback(null, true);
-      return next();
-    } 
-    
-    return next(invalidImageType(IMAGE));
-  },
-});
+      if (allowedMimes.includes(file.mimetype)) {
+        return callback(null, true);
+      }
+       return callback(invalidImageType(IMAGE));
+    },
+  });
