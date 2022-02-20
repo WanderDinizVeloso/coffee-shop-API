@@ -5,9 +5,9 @@ const { STORAGE_TYPE } = process.env;
 
 const destination = path.resolve(__dirname, '../../../../temp/images');
 
-const { renameImageName } = require('../../../services/functions');
-const { invalidImageType } = require('../../statusAndMessage');
-const { IMAGE } = require('../../../utils/strings');
+const { renameImageName, stringInNumber } = require('../../../services/functions');
+const { invalidType, invalidSize } = require('../../statusAndMessage');
+const { IMAGE, CONTENT_LENGTH } = require('../../../utils/strings');
 const { imageTypeList } = require('../../../utils/lists');
 const { IMAGE_MAX_SIZE } = require('../../../utils/magicNumbers');
 
@@ -34,12 +34,18 @@ module.exports = multer({
     limits: {
       fileSize: IMAGE_MAX_SIZE,
     },
-    fileFilter: (_reqFile, file, callback) => {
+    fileFilter: (req, file, callback) => {
+      const imageLength = stringInNumber(req.headers[CONTENT_LENGTH]);
       const allowedMimes = imageTypeList;
 
-      if (allowedMimes.includes(file.mimetype)) {
-        return callback(null, true);
+      if (imageLength > IMAGE_MAX_SIZE) {
+        return callback(invalidSize(IMAGE));
       }
-       return callback(invalidImageType(IMAGE));
+
+      if (!allowedMimes.includes(file.mimetype)) {
+        return callback(invalidType(IMAGE));
+      }
+
+      return callback(null, true);
     },
   });
