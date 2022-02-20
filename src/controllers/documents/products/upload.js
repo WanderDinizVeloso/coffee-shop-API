@@ -6,9 +6,12 @@ const { PRODUCT } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
   const { id } = req.params;
-  const { imageName: image, originalUrl } = req;
+  const { host } = req.headers;
+  const { imageName: image, protocol } = req;
 
-  const updated = await upload({ id, image, originalUrl });
+  const url = `${protocol}://${host}/images${image}`;
+
+  const updated = await upload({ id, url });
 
   if (!updated) {
     return next(notFound(PRODUCT));
