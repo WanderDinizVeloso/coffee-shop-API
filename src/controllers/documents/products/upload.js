@@ -5,9 +5,8 @@ const { notFound, modifiedSuccessfully } = require('../../statusAndMessage');
 const { PRODUCT } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
-  const { imageName: image } = req;
   const { id } = req.params;
-  const { originalUrl } = req.body;
+  const { imageName: image, originalUrl } = req;
 
   const updated = await upload({ id, image, originalUrl });
 
