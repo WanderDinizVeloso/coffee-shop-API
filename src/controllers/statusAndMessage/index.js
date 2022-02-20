@@ -32,6 +32,11 @@ const registered = (param) => ({
   message: `'${param}' is already.`,
 });
 
+const invalidImageType = (param) => ({
+  status: BAD_REQUEST,
+  message: `Invalid ${param} type.`,
+});
+
 module.exports = {
   internalError,
   invalid,
@@ -41,4 +46,5 @@ module.exports = {
   registered,
   deletedSuccessfully,
   modifiedSuccessfully,
+  invalidImageType,
 };
