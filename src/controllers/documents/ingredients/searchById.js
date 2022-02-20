@@ -5,7 +5,6 @@ const { notFound } = require('../../statusAndMessage');
 const { INGREDIENT } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
-  console.log(req.originalUrl);
   const { id } = req.params;
 
   const ingredient = await searchById({ id });
