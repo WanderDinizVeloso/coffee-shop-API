@@ -11,6 +11,11 @@ const INGREDIENT = 'ingredient';
 const INGREDIENTS = 'ingredients';
 const NAME_EXIST = 'name exist';
 const NEW_NAME = 'new_name';
+const PRODUCT = 'product';
+const PRODUCTS = 'products';
+const IMAGE_STRING_SEPARATOR = '.';
+const IMAGE = 'image';
+const CONTENT_LENGTH = 'content-length';
 
 module.exports = {
   TOKEN,
@@ -26,4 +31,9 @@ module.exports = {
   INGREDIENT,
   NAME_EXIST,
   NEW_NAME,
+  PRODUCT,
+  PRODUCTS,
+  IMAGE_STRING_SEPARATOR,
+  IMAGE,
+  CONTENT_LENGTH,
 };

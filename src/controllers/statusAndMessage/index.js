@@ -32,6 +32,16 @@ const registered = (param) => ({
   message: `'${param}' is already.`,
 });
 
+const invalidType = (param) => ({
+  status: BAD_REQUEST,
+  message: `Invalid ${param} type.`,
+});
+
+const invalidSize = (param) => ({
+  status: BAD_REQUEST,
+  message: `Invalid ${param} size.`,
+});
+
 module.exports = {
   internalError,
   invalid,
@@ -41,4 +51,6 @@ module.exports = {
   registered,
   deletedSuccessfully,
   modifiedSuccessfully,
+  invalidType,
+  invalidSize,
 };
