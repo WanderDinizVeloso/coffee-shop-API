@@ -1,13 +1,10 @@
-const { ObjectId } = require('mongodb');
-
 const { COMPONENTS } = require('../../../utils/strings');
-const { search, create } = require('../../../models')(COMPONENTS);
+const { searchByField, searchById, create } = require('../../../models')(COMPONENTS);
 const { setDecimalPlaces } = require('../../functions');
-const { filterField } = require('../../../utils/pipelines');
 const { DECIMAL_PLACES_QUANTITY } = require('../../../utils/magicNumbers');
 
 module.exports = async ({ productId, ingredients }) => {
-  const componentExistsOnDatabase = (await search(filterField({ productId })))[0];
+  const componentExistsOnDatabase = await searchByField({ productId });
 
   if (componentExistsOnDatabase) {
     return null;
@@ -23,9 +20,7 @@ module.exports = async ({ productId, ingredients }) => {
     ingredients: newIngredientsData,
   });
 
-  const newComponent = (
-    await search(filterField({ _id: ObjectId(insertedId) }))
-  )[0];
+  const newComponent = await searchById(insertedId);
 
   return newComponent;
 };
