@@ -18,6 +18,7 @@ const IMAGE = 'image';
 const CONTENT_LENGTH = 'content-length';
 const COMPONENT = 'component';
 const COMPONENTS = 'components';
+const ACTIVE = 'ACTIVE';
 
 module.exports = {
   TOKEN,
@@ -40,4 +41,5 @@ module.exports = {
   CONTENT_LENGTH,
   COMPONENT,
   COMPONENTS,
+  ACTIVE,
 };
