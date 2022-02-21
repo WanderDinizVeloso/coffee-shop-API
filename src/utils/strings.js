@@ -16,6 +16,8 @@ const PRODUCTS = 'products';
 const IMAGE_STRING_SEPARATOR = '.';
 const IMAGE = 'image';
 const CONTENT_LENGTH = 'content-length';
+const COMPONENT = 'component';
+const COMPONENTS = 'components';
 
 module.exports = {
   TOKEN,
@@ -36,4 +38,6 @@ module.exports = {
   IMAGE_STRING_SEPARATOR,
   IMAGE,
   CONTENT_LENGTH,
+  COMPONENT,
+  COMPONENTS,
 };
