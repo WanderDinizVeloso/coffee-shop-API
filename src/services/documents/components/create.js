@@ -10,8 +10,9 @@ module.exports = async ({ productId, ingredients }) => {
     return null;
   }
 
-  const newIngredientsData = ingredients.map(({ _id, quantity }) => ({
+  const newIngredientsData = ingredients.map(({ _id, name, quantity }) => ({
     _id,
+    name,
     quantity: setDecimalPlaces(quantity, DECIMAL_PLACES_QUANTITY),
   }));
 
