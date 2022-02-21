@@ -14,6 +14,6 @@ root.use('/login', login);
 root.use('/ingredients', ingredients);
 root.use('/products', products);
 root.use('/components', components);
-root.use('/sales', sales)
+root.use('/sales', sales);
 
 module.exports = root;
