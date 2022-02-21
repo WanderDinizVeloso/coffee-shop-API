@@ -1,11 +1,8 @@
-const { ObjectId } = require('mongodb');
-
 const { PRODUCTS } = require('../../../utils/strings');
-const { search } = require('../../../models')(PRODUCTS);
-const { filterField } = require('../../../utils/pipelines');
+const { searchById } = require('../../../models')(PRODUCTS);
 
-module.exports = async ({ id: _id }) => {
-  const product = (await search(filterField({ _id: ObjectId(_id) })))[0];
+module.exports = async ({ id }) => {
+  const product = await searchById(id);
 
   if (!product) {
     return null;
