@@ -2,7 +2,7 @@ const { PRODUCTS } = require('../../../utils/strings');
 const { searchById } = require('../../../models')(PRODUCTS);
 const { generateProductCost, generateIngredientNameList } = require('../../functions');
 
-module.exports = async ({ id }, cost = false) => {
+module.exports = async ({ id, cost = false }) => {
   const product = await searchById(id);
 
   if (!product) {
