@@ -1,1 +1,1 @@
-module.exports = (number, decimalPlaces) => (number).toFixed(decimalPlaces);
+module.exports = (number, decimalPlaces) => parseFloat((number).toFixed(decimalPlaces));
