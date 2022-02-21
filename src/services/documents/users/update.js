@@ -1,15 +1,13 @@
 const { hash } = require('bcrypt');
-const { ObjectId } = require('mongodb');
 
 const { BCRYPT_SALT_ROUNDS } = process.env;
 
 const { USERS, EMAIL_EXIST } = require('../../../utils/strings');
-const { update, search } = require('../../../models')(USERS);
+const { update, searchById } = require('../../../models')(USERS);
 const { stringInNumber, checkNewEmailOnDatabase } = require('../../functions');
-const { filterField, filterUserWithoutPassword } = require('../../../utils/pipelines');
 
-module.exports = async ({ id: _id, fullName, email, password }) => {
-  const user = (await search(filterField({ _id: ObjectId(_id) })))[0];
+module.exports = async ({ id, fullName, email, password }) => {
+  const user = await searchById(id);
 
   if (!user) {
     return null;
@@ -25,9 +23,7 @@ module.exports = async ({ id: _id, fullName, email, password }) => {
 
   await update({ ...user, fullName, email, password: hashedPassword });
 
-  const newUserDataWithoutPassword = (
-    await search(filterUserWithoutPassword({ _id: ObjectId(_id) }))
-  )[0];
+  const { password: pass, ...newUserDataWithoutPassword } = await searchById(id);
 
   return { newUserData: newUserDataWithoutPassword };
 };
