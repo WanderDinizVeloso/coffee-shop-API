@@ -5,6 +5,7 @@ const checkNewNameOnDatabase = require('./checkNewNameOnDatabase');
 const renameImageName = require('./renameImageName');
 const generateIngredientNameList = require('./generateIngredientNameList');
 const generateProductCost = require('./generateProductCost');
+const addStock = require('./addStock');
 
 module.exports = {
   stringInNumber,
@@ -14,4 +15,5 @@ module.exports = {
   renameImageName,
   generateIngredientNameList,
   generateProductCost,
+  addStock,
 };
