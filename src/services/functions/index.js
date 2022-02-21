@@ -4,6 +4,7 @@ const setDecimalPlaces = require('./setDecimalPlaces');
 const checkNewNameOnDatabase = require('./checkNewNameOnDatabase');
 const renameImageName = require('./renameImageName');
 const generateIngredientNameList = require('./generateIngredientNameList');
+const generateProductCost = require('./generateProductCost');
 
 module.exports = {
   stringInNumber,
@@ -12,4 +13,5 @@ module.exports = {
   checkNewNameOnDatabase,
   renameImageName,
   generateIngredientNameList,
+  generateProductCost,
 };
