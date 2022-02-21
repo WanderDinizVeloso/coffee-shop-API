@@ -1,8 +1,8 @@
 const { PRODUCTS } = require('../../../utils/strings');
-const { search } = require('../../../models')(PRODUCTS);
+const { searchAll } = require('../../../models')(PRODUCTS);
 
 module.exports = async () => {
-  const products = await search();
+  const products = await searchAll();
 
   return products;
 };
