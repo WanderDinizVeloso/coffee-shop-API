@@ -1,26 +1,23 @@
-const { ObjectId } = require('mongodb');
-
 const { INGREDIENTS, NAME_EXIST } = require('../../../utils/strings');
-const { search, update } = require('../../../models')(INGREDIENTS);
+const { searchById, searchByField, update } = require('../../../models')(INGREDIENTS);
 const { setDecimalPlaces, checkNewNameOnDatabase } = require('../../functions');
-const { filterField } = require('../../../utils/pipelines');
 const {
   DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY, INITIAL_QUANTITY,
 } = require('../../../utils/magicNumbers');
 
-module.exports = async ({ id: _id, name, unity, price }) => {
-  const ingredient = (await search(filterField({ _id: ObjectId(_id) })))[0];
+module.exports = async ({ id, name, unity, price }) => {
+  const ingredient = await searchById(id);
 
   if (!ingredient) {
     return null;
   }
 
-  const newNameExistsOnDatabase = await checkNewNameOnDatabase(name, ingredient.name, search);
+  const newNameExists = await checkNewNameOnDatabase(name, ingredient.name, searchByField);
 
-  if (newNameExistsOnDatabase) {
+  if (newNameExists) {
     return NAME_EXIST;
   }
-  
+
   await update({
     ...ingredient,
     name,
@@ -29,7 +26,7 @@ module.exports = async ({ id: _id, name, unity, price }) => {
     price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
   });
 
-  const newIngredientData = (await search(filterField({ _id: ObjectId(_id) })))[0];
+  const newIngredientData = await searchById(id);
 
   return { newData: newIngredientData };
 };
