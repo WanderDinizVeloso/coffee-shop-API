@@ -1,6 +1,6 @@
 const { PRODUCTS, NAME_EXIST } = require('../../../utils/strings');
 const { searchById, searchByField, update } = require('../../../models')(PRODUCTS);
-const { setDecimalPlaces, checkNewNameOnDatabase } = require('../../functions');
+const { setDecimalPlaces, checkNewNameOnDatabase, filterNull } = require('../../functions');
 const { DECIMAL_PLACES_PRICE } = require('../../../utils/magicNumbers');
 
 module.exports = async ({ id, name, price }) => {
@@ -18,8 +18,8 @@ module.exports = async ({ id, name, price }) => {
   
   await update({
     ...product,
-    name,
-    price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
+    name: filterNull(name, product.name),
+    price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE) || product.price,
   });
 
   const newProductData = await searchById(id);

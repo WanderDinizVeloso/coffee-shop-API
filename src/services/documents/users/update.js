@@ -4,7 +4,7 @@ const { BCRYPT_SALT_ROUNDS } = process.env;
 
 const { USERS, EMAIL_EXIST } = require('../../../utils/strings');
 const { update, searchById } = require('../../../models')(USERS);
-const { stringInNumber, checkNewEmailOnDatabase } = require('../../functions');
+const { stringInNumber, checkNewEmailOnDatabase, filterNull } = require('../../functions');
 
 module.exports = async ({ id, fullName, email, password }) => {
   const user = await searchById(id);
@@ -19,9 +19,14 @@ module.exports = async ({ id, fullName, email, password }) => {
     return EMAIL_EXIST;
   }
 
-  const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS));
+  const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS)) || user.password;
 
-  await update({ ...user, fullName, email, password: hashedPassword });
+  await update({
+    ...user,
+    fullName: filterNull(fullName, user.fullName),
+    email: filterNull(email, user.email),
+    password: hashedPassword || user.password,
+  });
 
   const { password: pass, ...newUserDataWithoutPassword } = await searchById(id);
 
