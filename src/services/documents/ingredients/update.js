@@ -1,6 +1,6 @@
 const { INGREDIENTS, NAME_EXIST } = require('../../../utils/strings');
 const { searchById, searchByField, update } = require('../../../models')(INGREDIENTS);
-const { setDecimalPlaces, checkNewNameOnDatabase } = require('../../functions');
+const { setDecimalPlaces, checkNewNameOnDatabase, filterNull } = require('../../functions');
 const { DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY } = require('../../../utils/magicNumbers');
 
 module.exports = async ({ id, name, unity, quantity, price }) => {
@@ -20,10 +20,10 @@ module.exports = async ({ id, name, unity, quantity, price }) => {
 
   await update({
     ...ingredient,
-    name,
-    unity,
-    quantity: setDecimalPlaces(addQuantityOnStock, DECIMAL_PLACES_QUANTITY),
-    price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
+    name: filterNull(name, ingredient.name),
+    unity: filterNull(unity, ingredient.unity),
+    quantity: setDecimalPlaces(addQuantityOnStock, DECIMAL_PLACES_QUANTITY) || ingredient.quantity,
+    price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE) || ingredient.price,
   });
 
   const newIngredientData = await searchById(id);
