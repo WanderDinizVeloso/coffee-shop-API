@@ -1,15 +1,19 @@
 const { PRODUCTS } = require('../../../utils/strings');
 const { searchById } = require('../../../models')(PRODUCTS);
-const { generateIngredientNameList } = require('../../functions');
+const { generateProductCost, generateIngredientNameList } = require('../../functions');
 
-module.exports = async ({ id }) => {
+module.exports = async ({ id }, cost = false) => {
   const product = await searchById(id);
 
   if (!product) {
     return null;
   }
 
-  const productWithIngredientList = await generateIngredientNameList(product);
+  if (cost) {
+    const productWithCost = await generateProductCost(product);
+    return productWithCost;
+  }
 
+  const productWithIngredientList = await generateIngredientNameList(product);
   return productWithIngredientList;
 };
