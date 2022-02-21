@@ -1,11 +1,8 @@
-const { ObjectId } = require('mongodb');
-
 const { COMPONENTS } = require('../../../utils/strings');
-const { search } = require('../../../models')(COMPONENTS);
-const { filterField } = require('../../../utils/pipelines');
+const { searchById } = require('../../../models')(COMPONENTS);
 
-module.exports = async ({ id: _id }) => {
-  const component = (await search(filterField({ _id: ObjectId(_id) })))[0];
+module.exports = async ({ id }) => {
+  const component = await searchById(id);
 
   if (!component) {
     return null;
