@@ -1,11 +1,8 @@
-const { ObjectId } = require('mongodb');
-
 const { PRODUCTS } = require('../../../utils/strings');
-const { search, update } = require('../../../models')(PRODUCTS);
-const { filterField } = require('../../../utils/pipelines');
+const { searchById, update } = require('../../../models')(PRODUCTS);
 
-module.exports = async ({ id: _id, url }) => {
-  const product = (await search(filterField({ _id: ObjectId(_id) })))[0];
+module.exports = async ({ id, url }) => {
+  const product = await searchById(id);
 
   if (!product) {
     return null;
@@ -13,7 +10,7 @@ module.exports = async ({ id: _id, url }) => {
   
   await update({ ...product, image: url });
 
-  const newProductData = (await search(filterField({ _id: ObjectId(_id) })))[0];
+  const newProductData = await searchById(id);
 
   return { newData: newProductData };
 };
