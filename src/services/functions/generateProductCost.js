@@ -5,7 +5,6 @@ const { DECIMAL_PLACES_PRICE, INITIAL_VALUE } = require('../../utils/magicNumber
 const { searchByField } = require('../../models')(COMPONENTS);
 const { searchById } = require('../../models')(INGREDIENTS);
 
-const stringInNumber = require('./stringInNumber');
 const setDecimalPlaces = require('./setDecimalPlaces');
 
 module.exports = async (product = {}) => {
@@ -18,10 +17,7 @@ module.exports = async (product = {}) => {
 
     const { price } = await Promise.resolve(ingredient);
 
-    const convertedQuantity = stringInNumber(quantity);
-    const convertedPrice = stringInNumber(price);
-
-    return (convertedQuantity * convertedPrice);
+    return (quantity * price);
   });
 
   const costListResolve = await Promise.all(costList);
