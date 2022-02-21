@@ -1,8 +1,6 @@
-const { filterField } = require('../../utils/pipelines');
-
-module.exports = async (newName, nameData, search) => {
+module.exports = async (newName, nameData, searchByField) => {
   if (newName !== nameData) {
-    const verifiedName = (await search(filterField({ name: newName })))[0];
+    const verifiedName = searchByField({ name: newName });
 
     return verifiedName;
   }
