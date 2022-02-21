@@ -1,1 +1,7 @@
-module.exports = (number, decimalPlaces) => parseFloat((number).toFixed(decimalPlaces));
+module.exports = (number, decimalPlaces) => {
+  if (!number || number === '') {
+    return null;
+  }
+
+  return parseFloat((number).toFixed(decimalPlaces));
+};
