@@ -1,5 +1,6 @@
 const { PRODUCTS } = require('../../../utils/strings');
 const { searchById } = require('../../../models')(PRODUCTS);
+const { generateIngredientNameList } = require('../../functions');
 
 module.exports = async ({ id }) => {
   const product = await searchById(id);
@@ -8,5 +9,7 @@ module.exports = async ({ id }) => {
     return null;
   }
 
-  return product;
+  const productWithIngredientList = await generateIngredientNameList(product);
+
+  return productWithIngredientList;
 };
