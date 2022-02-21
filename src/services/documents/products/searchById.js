@@ -1,4 +1,4 @@
-const { PRODUCTS } = require('../../../utils/strings');
+const { PRODUCTS, ACTIVATE } = require('../../../utils/strings');
 const { searchById } = require('../../../models')(PRODUCTS);
 const { generateProductCost, generateIngredientNameList } = require('../../functions');
 
@@ -9,7 +9,7 @@ module.exports = async ({ id, cost = false }) => {
     return null;
   }
 
-  if (cost) {
+  if (cost === ACTIVATE) {
     const productWithCost = await generateProductCost(product);
     return productWithCost;
   }

@@ -1,11 +1,11 @@
-const { PRODUCTS } = require('../../../utils/strings');
+const { PRODUCTS, ACTIVATE } = require('../../../utils/strings');
 const { searchAll } = require('../../../models')(PRODUCTS);
 const { generateIngredientNameList, generateProductCost } = require('../../functions');
 
-module.exports = async ({ cost = false }) => {
+module.exports = async ({ cost }) => {
   const products = await searchAll();
 
-  if (cost) {
+  if (cost === ACTIVATE) {
     const productsWithCost = products.map((product) => generateProductCost(product));
     const productsWithCostResolve = await Promise.all(productsWithCost);
   
