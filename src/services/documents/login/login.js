@@ -1,12 +1,11 @@
 const { compare } = require('bcrypt');
 
 const { USERS } = require('../../../utils/strings');
-const { search } = require('../../../models')(USERS);
+const { searchByField } = require('../../../models')(USERS);
 const { getToken } = require('../../auth');
-const { filterField } = require('../../../utils/pipelines');
 
 module.exports = async ({ email, password }) => {
-  const user = (await search(filterField({ email })))[0];
+  const user = await searchByField({ email });
 
   if (!user) {
     return null;
