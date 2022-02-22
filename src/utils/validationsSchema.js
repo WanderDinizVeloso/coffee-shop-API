@@ -22,7 +22,7 @@ const schemas = {
     .objectId(),
 };
 
-const { email, password, fullName } = schemas;
+const { email, password, fullName, id } = schemas;
 
 const loginSchema = Joi.object({
   email,
@@ -30,6 +30,7 @@ const loginSchema = Joi.object({
 });
 
 const usersSchema = Joi.object({
+  id,
   fullName,
   email,
   password,
