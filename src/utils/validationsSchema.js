@@ -1,6 +1,7 @@
 const Joi = require('@hapi/joi');
+Joi.objectId = require('joi-objectid')(Joi);
 
-const loginSchema = Joi.object({
+const schemas = {
   email: Joi
     .string()
     .email()
@@ -13,8 +14,28 @@ const loginSchema = Joi.object({
     .regex(/[0-9]+/)
     .regex(/[!$#%_]+/)
     .required(),
+  fullName: Joi
+    .string()
+    .min(8)
+    .required(),
+  id: Joi
+    .objectId(),
+};
+
+const { email, password, fullName } = schemas;
+
+const loginSchema = Joi.object({
+  email,
+  password,
+});
+
+const usersSchema = Joi.object({
+  fullName,
+  email,
+  password,
 });
 
 module.exports = {
   loginSchema,
+  usersSchema,
 };
