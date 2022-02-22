@@ -8,34 +8,34 @@ const {
 const router = express.Router({ mergeParams: true });
 
 router.get('/', wrapper([
-  // authentication,
+  authentication,
   searchAll,
 ]));
 
 router.get('/:id', wrapper([
-  // authentication,
+  authentication,
   validateId,
   searchById,
 ]));
 
 router.post('/', wrapper([
-  // authentication,
-  // admAuthorization,
+  authentication,
+  admAuthorization,
   validateComponents,
   create,
 ]));
 
 router.put('/:id', wrapper([
-  // authentication,
-  // admAuthorization,
+  authentication,
+  admAuthorization,
   validateId,
   validateComponents,
   update,
 ]));
 
 router.delete('/:id', wrapper([
-  // authentication,
-  // admAuthorization,
+  authentication,
+  admAuthorization,
   validateId,
   remove,
 ]));

@@ -6,13 +6,13 @@ const { wrapper, authentication, admAuthorization, validateSales } = require('..
 const router = express.Router({ mergeParams: true });
 
 router.get('/', wrapper([
-  // authentication,
-  // admAuthorization,
+  authentication,
+  admAuthorization,
   searchAll,
 ]));
 
 router.post('/', wrapper([
-  // authentication,
+  authentication,
   validateSales,
   create,
 ]));
