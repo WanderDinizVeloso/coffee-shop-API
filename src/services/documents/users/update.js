@@ -4,9 +4,11 @@ const { BCRYPT_SALT_ROUNDS } = process.env;
 
 const { USERS, EMAIL_EXIST } = require('../../../utils/strings');
 const { update, searchById } = require('../../../models')(USERS);
-const { stringInNumber, checkNewEmailOnDatabase, filterNull } = require('../../functions');
+const {
+  stringInNumber, checkNewEmailOnDatabase, filterNull, changePermissions,
+} = require('../../functions');
 
-module.exports = async ({ id, fullName, email, password }) => {
+module.exports = async ({ id, fullName, email, password, masterRole }) => {
   const user = await searchById(id);
 
   if (!user) {
@@ -25,7 +27,8 @@ module.exports = async ({ id, fullName, email, password }) => {
     ...user,
     fullName: filterNull(fullName, user.fullName),
     email: filterNull(email, user.email),
-    password: hashedPassword || user.password,
+    password: filterNull(hashedPassword, user.password),
+    role: changePermissions(user.role, masterRole),
   });
 
   const { password: pass, ...newUserDataWithoutPassword } = await searchById(id);
