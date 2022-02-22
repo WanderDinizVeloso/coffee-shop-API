@@ -22,6 +22,7 @@ const ACTIVATE = 'activate';
 const SALE = 'sale';
 const SALES = 'sales';
 const MASTER_ROLE = 'master';
+const PUT = 'PUT';
 
 module.exports = {
   TOKEN,
@@ -48,4 +49,5 @@ module.exports = {
   SALE,
   SALES,
   MASTER_ROLE,
+  PUT,
 };
