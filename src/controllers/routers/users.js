@@ -1,7 +1,9 @@
 const express = require('express');
 
 const { create, remove, update } = require('../documents/users');
-const { wrapper, authentication, userAuthorization, validateUsers } = require('../middlewares');
+const {
+  wrapper, authentication, userAuthorization, validateUsers, validateId,
+} = require('../middlewares');
 
 const router = express.Router({ mergeParams: true });
 
@@ -13,12 +15,14 @@ router.post('/', wrapper([
 router.put('/:id', wrapper([
   authentication,
   userAuthorization,
+  validateId,
   update,
 ]));
 
 router.delete('/:id', wrapper([
   authentication,
   userAuthorization,
+  validateId,
   remove,
 ]));
 

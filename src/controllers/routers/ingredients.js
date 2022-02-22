@@ -2,7 +2,7 @@ const express = require('express');
 
 const { create, remove, searchAll, searchById, update } = require('../documents/ingredients');
 const {
-  wrapper, authentication, admAuthorization, validateIngredients,
+  wrapper, authentication, admAuthorization, validateIngredients, validateId,
 } = require('../middlewares');
 
 const router = express.Router({ mergeParams: true });
@@ -14,6 +14,7 @@ router.get('/', wrapper([
 
 router.get('/:id', wrapper([
   authentication,
+  validateId,
   searchById,
 ]));
 
@@ -27,12 +28,14 @@ router.post('/', wrapper([
 router.put('/:id', wrapper([
   authentication,
   admAuthorization,
+  validateId,
   update,
 ]));
 
 router.delete('/:id', wrapper([
   authentication,
   admAuthorization,
+  validateId,
   remove,
 ]));
 
