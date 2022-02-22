@@ -1,9 +1,9 @@
-const { ADMIN } = require('../../utils/strings');
+const { ADMIN, MASTER_ROLE } = require('../../utils/strings');
 
 module.exports = (userRole, masterRole) => {
-  if (masterRole) {
-    return { role: ADMIN };
-  }
-  
+  console.log(masterRole === MASTER_ROLE);
+
+  if (masterRole === MASTER_ROLE) return ADMIN;
+
   return userRole;
 };
