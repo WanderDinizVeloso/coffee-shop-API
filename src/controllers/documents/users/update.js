@@ -11,13 +11,8 @@ module.exports = async (req, res, next) => {
 
   const updated = await update({ id, fullName, email, password, masterRole: role });
 
-  if (!updated) {
-    return next(notFound(USER));
-  }
-
-  if (updated === EMAIL_EXIST) {
-    return next(registered(NEW_EMAIL));
-  }
+  if (!updated) return next(notFound(USER));
+  if (updated === EMAIL_EXIST) return next(registered(NEW_EMAIL));
 
   return res
     .status(OK)

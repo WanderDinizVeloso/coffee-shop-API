@@ -13,10 +13,8 @@ module.exports = async (req, res, next) => {
 
   const updated = await upload({ id, url });
 
-  if (!updated) {
-    return next(notFound(PRODUCT));
-  }
-
+  if (!updated) return next(notFound(PRODUCT));
+  
   return res
     .status(OK)
     .json({

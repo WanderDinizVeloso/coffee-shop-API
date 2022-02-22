@@ -9,10 +9,8 @@ module.exports = async (req, res, next) => {
 
   const token = await login({ email, password });
 
-  if (!token) {
-    return next(invalid(EMAIL_OR_PASSWORD));
-  }
-
+  if (!token) return next(invalid(EMAIL_OR_PASSWORD));
+  
   return res
     .status(OK)
     .json({ token });

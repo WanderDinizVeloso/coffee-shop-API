@@ -9,9 +9,7 @@ module.exports = async (req, res, next) => {
 
   const created = await create({ name, unity, price });
 
-  if (!created) {
-    return next(registered(INGREDIENT));
-  }
+  if (!created) return next(registered(INGREDIENT));
 
   return res
     .status(CREATED)

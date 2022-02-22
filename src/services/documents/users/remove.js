@@ -5,9 +5,7 @@ const { create } = require('../../../models')(TOKENS);
 module.exports = async ({ id, role, token }) => {
   const user = await searchById(id);
 
-  if (!user) {
-    return null;
-  }
+  if (!user) return null;
 
   await remove(id);
 

@@ -11,9 +11,7 @@ module.exports = async (req, res, next) => {
 
   const removed = await remove({ id, role, token });
 
-  if (!removed) {
-    return next(notFound(USER));
-  }
+  if (!removed) return next(notFound(USER));
 
   return res
     .status(OK)

@@ -56,9 +56,7 @@ module.exports = async ({ productId: id, quantity }) => {
 
   const { insufficientFunds, list } = stockVerify(ingredientsData, quantity);
 
-  if (insufficientFunds) {
-    return { insufficientFunds, list };
-  }
+  if (insufficientFunds) return { insufficientFunds, list };
 
   await stockUpdate(ingredientsData, quantity);
 

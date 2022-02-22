@@ -9,9 +9,7 @@ module.exports = async (req, res, next) => {
 
   const created = await create({ fullName, email, password });
 
-  if (!created) {
-    return next(registered(EMAIL));
-  }
+  if (!created) return next(registered(EMAIL));
 
   return res
     .status(CREATED)

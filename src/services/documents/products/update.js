@@ -6,15 +6,11 @@ const { DECIMAL_PLACES_PRICE } = require('../../../utils/magicNumbers');
 module.exports = async ({ id, name, price }) => {
   const product = await searchById(id);
 
-  if (!product) {
-    return null;
-  }
+  if (!product) return null;
 
   const newNameExists = await checkNewNameOnDatabase(name, product.name, searchByField);
 
-  if (newNameExists) {
-    return NAME_EXIST;
-  }
+  if (newNameExists) return NAME_EXIST;
   
   await update({
     ...product,

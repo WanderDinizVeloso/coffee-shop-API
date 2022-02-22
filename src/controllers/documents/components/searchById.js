@@ -9,9 +9,7 @@ module.exports = async (req, res, next) => {
 
   const component = await searchById({ id });
 
-  if (!component) {
-    return next(notFound(COMPONENT));
-  }
+  if (!component) return next(notFound(COMPONENT));
 
   return res
     .status(OK)
