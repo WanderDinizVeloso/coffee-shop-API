@@ -6,13 +6,13 @@ const { wrapper, authentication, admAuthorization } = require('../middlewares');
 const router = express.Router({ mergeParams: true });
 
 router.get('/', wrapper([
-  // authentication,
-  // admAuthorization,
+  authentication,
+  admAuthorization,
   searchAll,
 ]));
 
 router.post('/', wrapper([
-  // authentication,
+  authentication,
   create,
 ]));
 
