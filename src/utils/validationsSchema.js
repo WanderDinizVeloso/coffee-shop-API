@@ -82,7 +82,7 @@ const schemas = {
   ingredientsRequired: Joi
     .array()
       .items({
-        id: Joi
+        _id: Joi
           .objectId()
           .required(),
         name: Joi
@@ -97,7 +97,7 @@ const schemas = {
   ingredients: Joi
     .array()
       .items({
-        id: Joi
+        _id: Joi
           .objectId()
           .optional(),
         name: Joi
