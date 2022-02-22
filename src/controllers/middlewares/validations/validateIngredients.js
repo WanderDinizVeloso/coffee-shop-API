@@ -13,6 +13,7 @@ const schema = Joi.object({
 const schemaUpdate = Joi.object({
   name: schemas.name,
   unity: schemas.unitary,
+  quantity: schemas.values,
   price: schemas.values,
 });
 
