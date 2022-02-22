@@ -8,6 +8,7 @@ const generateProductCost = require('./generateProductCost');
 const filterNull = require('./filterNull');
 const stockUpdate = require('./stockUpdate');
 const checkMasterPermissions = require('./checkMasterPermissions');
+const changePermissions = require('./changePermissions');
 
 module.exports = {
   stringInNumber,
@@ -20,4 +21,5 @@ module.exports = {
   filterNull,
   stockUpdate,
   checkMasterPermissions,
+  changePermissions,
 };
