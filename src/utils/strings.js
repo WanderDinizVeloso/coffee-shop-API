@@ -19,6 +19,8 @@ const CONTENT_LENGTH = 'content-length';
 const COMPONENT = 'component';
 const COMPONENTS = 'components';
 const ACTIVATE = 'activate';
+const SALE = 'sale';
+const SALES = 'sales';
 
 module.exports = {
   TOKEN,
@@ -42,4 +44,6 @@ module.exports = {
   COMPONENT,
   COMPONENTS,
   ACTIVATE,
+  SALE,
+  SALES,  
 };
