@@ -21,6 +21,7 @@ const COMPONENTS = 'components';
 const ACTIVATE = 'activate';
 const SALE = 'sale';
 const SALES = 'sales';
+const MASTER_ROLE = 'master';
 
 module.exports = {
   TOKEN,
@@ -45,5 +46,6 @@ module.exports = {
   COMPONENTS,
   ACTIVATE,
   SALE,
-  SALES,  
+  SALES,
+  MASTER_ROLE,
 };

@@ -1,13 +1,11 @@
 const { unauthorized } = require('../../statusAndMessage');
-const { ADMIN } = require('../../../utils/strings');
+const { ADMIN, MASTER_ROLE } = require('../../../utils/strings');
 
 module.exports = async (req, _res, next) => {
   const { id } = req.params;
   const { _id: reqUserId, role } = req.user;
 
-  if (id !== reqUserId && role !== ADMIN) {
-    return next(unauthorized());
-  }
+  if (id !== reqUserId && ![ADMIN, MASTER_ROLE].includes(role)) return next(unauthorized());
 
   return next();
 };
