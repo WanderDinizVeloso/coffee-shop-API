@@ -5,12 +5,7 @@ module.exports = async (req, _res, next) => {
   const { id } = req.params;
   const { _id: reqUserId, role } = req.user;
 
-  if (
-    (id !== reqUserId && role !== ADMIN)
-    || role !== MASTER_ROLE
-  ) {
-    return next(unauthorized());
-  }
+  if (id !== reqUserId && ![ADMIN, MASTER_ROLE].includes(role)) return next(unauthorized());
 
   return next();
 };
