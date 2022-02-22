@@ -13,16 +13,16 @@ router.post('/', wrapper([
 ]));
 
 router.put('/:id', wrapper([
-  // authentication,
-  // userAuthorization,
+  authentication,
+  userAuthorization,
   validateId,
   validateUsers,
   update,
 ]));
 
 router.delete('/:id', wrapper([
-  // authentication,
-  // userAuthorization,
+  authentication,
+  userAuthorization,
   validateId,
   remove,
 ]));
