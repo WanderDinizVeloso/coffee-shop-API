@@ -2,7 +2,7 @@ const { INGREDIENTS } = require('../../../utils/strings');
 const { searchByField, searchById, create } = require('../../../models')(INGREDIENTS);
 const { setDecimalPlaces } = require('../../functions');
 const {
-  DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY, INITIAL_QUANTITY,
+  DECIMAL_PLACES_PRICE, INITIAL_QUANTITY,
 } = require('../../../utils/magicNumbers');
 
 module.exports = async ({ name, unity, price }) => {
@@ -15,7 +15,7 @@ module.exports = async ({ name, unity, price }) => {
   const { insertedId } = await create({
     name,
     unity,
-    quantity: setDecimalPlaces(INITIAL_QUANTITY, DECIMAL_PLACES_QUANTITY),
+    quantity: INITIAL_QUANTITY,
     price: setDecimalPlaces(price, DECIMAL_PLACES_PRICE),
   });
 

@@ -42,6 +42,11 @@ const invalidSize = (param) => ({
   message: `Invalid ${param} size.`,
 });
 
+const insufficientStock = (param) => ({
+  status: BAD_REQUEST,
+  message: `Insufficient stock of ingredients: ${param}`,
+});
+
 module.exports = {
   internalError,
   invalid,
@@ -53,4 +58,5 @@ module.exports = {
   modifiedSuccessfully,
   invalidType,
   invalidSize,
+  insufficientStock,
 };
