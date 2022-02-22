@@ -38,13 +38,8 @@ module.exports = multer({
       const imageLength = stringInNumber(req.headers[CONTENT_LENGTH]);
       const allowedMimes = imageTypeList;
 
-      if (imageLength > IMAGE_MAX_SIZE) {
-        return callback(invalidSize(IMAGE));
-      }
-
-      if (!allowedMimes.includes(file.mimetype)) {
-        return callback(invalidType(IMAGE));
-      }
+      if (imageLength > IMAGE_MAX_SIZE) return callback(invalidSize(IMAGE));
+      if (!allowedMimes.includes(file.mimetype)) return callback(invalidType(IMAGE));
 
       return callback(null, true);
     },

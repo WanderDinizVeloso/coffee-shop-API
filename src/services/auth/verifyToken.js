@@ -11,9 +11,7 @@ module.exports = async (token) => {
 
     const existsOnTheBlacklist = await searchByField({ token });
   
-    if (existsOnTheBlacklist) {
-      return null;
-    }
+    if (existsOnTheBlacklist) return null;
 
     return decoded.data;
   } catch (err) {

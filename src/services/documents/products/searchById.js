@@ -5,9 +5,7 @@ const { generateProductCost, generateIngredientNameList } = require('../../funct
 module.exports = async ({ id, cost = false }) => {
   const product = await searchById(id);
 
-  if (!product) {
-    return null;
-  }
+  if (!product) return null;
 
   if (cost === ACTIVATE) {
     const productWithCost = await generateProductCost(product);

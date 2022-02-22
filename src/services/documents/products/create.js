@@ -6,9 +6,7 @@ const { DECIMAL_PLACES_PRICE } = require('../../../utils/magicNumbers');
 module.exports = async ({ name, price }) => {
   const productExistsOnDatabase = await searchByField({ name });
 
-  if (productExistsOnDatabase) {
-    return null;
-  }
+  if (productExistsOnDatabase) return null;
 
   const { insertedId } = await create({
     name,

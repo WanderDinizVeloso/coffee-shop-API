@@ -6,9 +6,7 @@ const { DECIMAL_PLACES_QUANTITY } = require('../../../utils/magicNumbers');
 module.exports = async ({ productId, ingredients }) => {
   const componentExistsOnDatabase = await searchByField({ productId });
 
-  if (componentExistsOnDatabase) {
-    return null;
-  }
+  if (componentExistsOnDatabase) return null;
 
   const newIngredientsData = ingredients.map(({ _id, name, quantity }) => ({
     _id,

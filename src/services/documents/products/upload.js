@@ -4,9 +4,7 @@ const { searchById, update } = require('../../../models')(PRODUCTS);
 module.exports = async ({ id, url }) => {
   const product = await searchById(id);
 
-  if (!product) {
-    return null;
-  }
+  if (!product) return null;
   
   await update({ ...product, image: url });
 

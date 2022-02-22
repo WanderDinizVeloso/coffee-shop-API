@@ -6,9 +6,7 @@ const { stockUpdate } = require('../../functions');
 module.exports = async ({ productId, quantity }) => {
   const product = await searchProduct({ id: productId });
 
-  if (!product) {
-    return null;
-  }
+  if (!product) return null;
 
   const { insufficientFunds, list } = await stockUpdate({ productId, quantity });
 

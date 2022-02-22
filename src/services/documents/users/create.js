@@ -9,9 +9,7 @@ const { stringInNumber } = require('../../functions');
 module.exports = async ({ fullName, email, password }) => {
   const userExistsOnDatabase = await searchByField({ email });
 
-  if (userExistsOnDatabase) {
-    return null;
-  }
+  if (userExistsOnDatabase) return null;
 
   const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS));
 

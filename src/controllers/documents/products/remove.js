@@ -9,9 +9,7 @@ module.exports = async (req, res, next) => {
 
   const removed = await remove({ id });
 
-  if (!removed) {
-    return next(notFound(PRODUCT));
-  }
+  if (!removed) return next(notFound(PRODUCT));
 
   return res
     .status(OK)

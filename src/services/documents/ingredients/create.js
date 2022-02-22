@@ -8,9 +8,7 @@ const {
 module.exports = async ({ name, unity, price }) => {
   const ingredientExistsOnDatabase = await searchByField({ name });
 
-  if (ingredientExistsOnDatabase) {
-    return null;
-  }
+  if (ingredientExistsOnDatabase) return null;
 
   const { insertedId } = await create({
     name,

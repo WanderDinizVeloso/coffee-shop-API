@@ -6,15 +6,11 @@ const { DECIMAL_PLACES_PRICE, DECIMAL_PLACES_QUANTITY } = require('../../../util
 module.exports = async ({ id, name, unity, quantity, price }) => {
   const ingredient = await searchById(id);
 
-  if (!ingredient) {
-    return null;
-  }
+  if (!ingredient) return null;
 
   const newNameExists = await checkNewNameOnDatabase(name, ingredient.name, searchByField);
 
-  if (newNameExists) {
-    return NAME_EXIST;
-  }
+  if (newNameExists) return NAME_EXIST;
 
   const addQuantityOnStock = ingredient.quantity + quantity;
 

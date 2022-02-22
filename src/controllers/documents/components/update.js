@@ -10,9 +10,7 @@ module.exports = async (req, res, next) => {
 
   const updated = await update({ id, productId, ingredients });
 
-  if (!updated) {
-    return next(notFound(COMPONENT));
-  }
+  if (!updated) return next(notFound(COMPONENT));
 
   return res
     .status(OK)

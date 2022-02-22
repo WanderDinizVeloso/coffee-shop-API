@@ -16,15 +16,11 @@ module.exports = async ({ email, password }) => {
 
   const user = await searchByField({ email });
 
-  if (!user) {
-    return null;
-  }
-  
+  if (!user) return null;
+
   const correctPassword = await compare(password, user.password);
  
-  if (!correctPassword) {
-    return null;
-  }
+  if (!correctPassword) return null;
 
   const { password: pass, ...userWithoutPassword } = user;
 

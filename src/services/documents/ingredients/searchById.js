@@ -4,9 +4,7 @@ const { searchById } = require('../../../models')(INGREDIENTS);
 module.exports = async ({ id }) => {
   const ingredient = await searchById(id);
 
-  if (!ingredient) {
-    return null;
-  }
+  if (!ingredient) return null;
 
   return ingredient;
 };
