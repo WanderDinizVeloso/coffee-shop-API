@@ -29,6 +29,7 @@ router.put('/:id', wrapper([
   authentication,
   admAuthorization,
   validateId,
+  validateIngredients,
   update,
 ]));
 

@@ -16,6 +16,7 @@ router.put('/:id', wrapper([
   authentication,
   userAuthorization,
   validateId,
+  validateUsers,
   update,
 ]));
 
