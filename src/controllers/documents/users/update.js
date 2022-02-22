@@ -5,10 +5,11 @@ const { modifiedSuccessfully, notFound, registered } = require('../../statusAndM
 const { USER, EMAIL_EXIST, NEW_EMAIL } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
+  const { role } = req.user;
   const { id } = req.params;
   const { fullName, email, password } = req.body;
 
-  const updated = await update({ id, fullName, email, password });
+  const updated = await update({ id, fullName, email, password, masterRole: role });
 
   if (!updated) {
     return next(notFound(USER));
