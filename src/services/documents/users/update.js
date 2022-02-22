@@ -8,27 +8,29 @@ const {
   stringInNumber, checkNewEmailOnDatabase, filterNull, changePermissions,
 } = require('../../functions');
 
-module.exports = async ({ id, fullName, email, password, masterRole }) => {
+module.exports = async ({ id, fullName, email, password, masterRole }) => {  
   const user = await searchById(id);
-
-  if (!user) {
-    return null;
-  }
+ 
+  if (!user) return null;
 
   const newEmailExistsOnDatabase = await checkNewEmailOnDatabase(email, user.email);
+  
+  if (newEmailExistsOnDatabase) return EMAIL_EXIST;
 
-  if (newEmailExistsOnDatabase) {
-    return EMAIL_EXIST;
+  let passwordData = user.password;
+
+  if (password) { 
+    const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS));
+
+    passwordData = hashedPassword;
   }
 
-  const hashedPassword = await hash(password, stringInNumber(BCRYPT_SALT_ROUNDS)) || user.password;
-
   await update({
-    ...user,
-    fullName: filterNull(fullName, user.fullName),
-    email: filterNull(email, user.email),
-    password: filterNull(hashedPassword, user.password),
-    role: changePermissions(user.role, masterRole),
+      ...user,
+      fullName: filterNull(fullName, user.fullName),
+      email: filterNull(email, user.email),
+      password: filterNull(passwordData, user.password),
+      role: changePermissions(user.role, masterRole),
   });
 
   const { password: pass, ...newUserDataWithoutPassword } = await searchById(id);
