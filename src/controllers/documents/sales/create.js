@@ -1,7 +1,7 @@
 const { CREATED } = require('http-status-codes').StatusCodes;
 
 const { create } = require('../../../services/documents/sales');
-const { createdSuccessfully, registered } = require('../../statusAndMessage');
+const { createdSuccessfully, registered, insufficientStock } = require('../../statusAndMessage');
 const { SALE } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
@@ -11,6 +11,10 @@ module.exports = async (req, res, next) => {
 
   if (!created) {
     return next(registered(SALE));
+  }
+
+  if (created.insufficientFunds) {
+    return next(insufficientStock(created.list));
   }
 
   return res
