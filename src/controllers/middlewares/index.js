@@ -9,6 +9,7 @@ const validateUsers = require('./validations/validateUsers');
 const validateProducts = require('./validations/validateProducts');
 const validateIngredients = require('./validations/validateIngredients');
 const validateSales = require('./validations/validateSales');
+const validateComponents = require('./validations/validateComponents');
 
 module.exports = {
   admAuthorization,
@@ -22,4 +23,5 @@ module.exports = {
   validateProducts,
   validateIngredients,
   validateSales,
+  validateComponents,
 };
