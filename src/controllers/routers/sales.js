@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { create, searchAll } = require('../documents/sales');
-const { wrapper, authentication, admAuthorization } = require('../middlewares');
+const { wrapper, authentication, admAuthorization, validateSales } = require('../middlewares');
 
 const router = express.Router({ mergeParams: true });
 
@@ -13,6 +13,7 @@ router.get('/', wrapper([
 
 router.post('/', wrapper([
   authentication,
+  validateSales,
   create,
 ]));
 

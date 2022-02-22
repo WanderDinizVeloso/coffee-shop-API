@@ -1,11 +1,12 @@
 const express = require('express');
 
-const { wrapper } = require('../middlewares');
+const { wrapper, validateLogin } = require('../middlewares');
 const { login } = require('../documents/login');
 
 const router = express.Router({ mergeParams: true });
 
 router.post('/', wrapper([
+  validateLogin,
   login,
 ]));
 
