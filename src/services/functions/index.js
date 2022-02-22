@@ -6,6 +6,7 @@ const renameImageName = require('./renameImageName');
 const generateIngredientNameList = require('./generateIngredientNameList');
 const generateProductCost = require('./generateProductCost');
 const filterNull = require('./filterNull');
+const stockUpdate = require('./stockUpdate');
 
 module.exports = {
   stringInNumber,
@@ -16,4 +17,5 @@ module.exports = {
   generateIngredientNameList,
   generateProductCost,
   filterNull,
+  stockUpdate,
 };
