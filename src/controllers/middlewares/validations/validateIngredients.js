@@ -6,13 +6,13 @@ const { PUT } = require('../../../utils/strings');
 
 const schema = Joi.object({
   name: schemas.nameRequired,
-  unity: schemas.unitaryRequired,
+  unity: schemas.unityRequired,
   price: schemas.valuesRequired,
 });
 
 const schemaUpdate = Joi.object({
   name: schemas.name,
-  unity: schemas.unitary,
+  unity: schemas.unity,
   quantity: schemas.values,
   price: schemas.values,
 });

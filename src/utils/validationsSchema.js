@@ -52,11 +52,11 @@ const schemas = {
     .min(5)
     .optional(),
   
-  unitaryRequired: Joi
+  unityRequired: Joi
     .string()
     .min(3)
     .required(),
-  unitary: Joi
+  unity: Joi
     .string()
     .min(3)
     .optional(),
