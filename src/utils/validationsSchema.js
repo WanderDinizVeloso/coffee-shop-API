@@ -10,7 +10,8 @@ const schemas = {
   email: Joi
     .string()
     .email()
-    .lowercase(),
+    .lowercase()
+    .optional(),
 
   passwordRequired: Joi
     .string()
@@ -24,28 +25,32 @@ const schemas = {
     .min(8)
     .regex(/[A-Z]+/)
     .regex(/[0-9]+/)
-    .regex(/[!$#%_]+/),
+    .regex(/[!$#%_]+/)
+    .optional(),
 
   fullNameRequired: Joi
     .string()
     .min(8)
     .required(),
   fullName: Joi
-  .string()
-  .min(8),
+    .string()
+    .min(8)
+    .optional(),
 
   idRequired: Joi
     .objectId()
     .required(),
   id: Joi
-    .objectId(),
+    .objectId()
+    .optional(),
   
   nameRequired: Joi
     .string()
     .min(5),
   name: Joi
     .string()
-    .min(5),
+    .min(5)
+    .optional(),
   
   unitaryRequired: Joi
     .string()
@@ -53,7 +58,8 @@ const schemas = {
     .required(),
   unitary: Joi
     .string()
-    .min(3),
+    .min(3)
+    .optional(),
 
   valuesRequired: Joi
     .number()
@@ -61,7 +67,8 @@ const schemas = {
     .required(),
   values: Joi
     .number()
-    .positive(),
+    .positive()
+    .optional(),
 
   quantityRequired: Joi
     .number()
@@ -69,7 +76,8 @@ const schemas = {
     .required(),
   quantity: Joi
     .number()
-    .positive(),
+    .positive()
+    .optional(),
 
   ingredientsRequired: Joi
     .array()
@@ -87,18 +95,20 @@ const schemas = {
           .required(),
       }),
   ingredients: Joi
-  .array()
-    .items({
-      id: Joi
-        .objectId()
-        .required(),
-      name: Joi
-        .string()
-        .min(5),
-      quantity: Joi
-        .number()
-        .positive(),
-    }),
+    .array()
+      .items({
+        id: Joi
+          .objectId()
+          .optional(),
+        name: Joi
+          .string()
+          .min(5)
+          .optional(),
+        quantity: Joi
+          .number()
+          .positive()
+          .optional(),
+      }),
 };
 
 module.exports = {
