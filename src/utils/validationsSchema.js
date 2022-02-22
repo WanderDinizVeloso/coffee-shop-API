@@ -2,43 +2,76 @@ const Joi = require('@hapi/joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
 const schemas = {
-  required: Joi
+  emailRequired: Joi
+    .string()
+    .email()
+    .lowercase()
     .required(),
   email: Joi
     .string()
     .email()
     .lowercase(),
+
+  passwordRequired: Joi
+    .string()
+    .min(8)
+    .regex(/[A-Z]+/)
+    .regex(/[0-9]+/)
+    .regex(/[!$#%_]+/)
+    .required(),
   password: Joi
     .string()
     .min(8)
     .regex(/[A-Z]+/)
     .regex(/[0-9]+/)
     .regex(/[!$#%_]+/),
-  fullName: Joi
+
+  fullNameRequired: Joi
     .string()
-    .min(8),
+    .min(8)
+    .required(),
+  fullName: Joi
+  .string()
+  .min(8),
+
+  idRequired: Joi
+    .objectId()
+    .required(),
   id: Joi
     .objectId(),
+  
+  nameRequired: Joi
+    .string()
+    .min(5),
   name: Joi
     .string()
     .min(5),
-  nameRequired: Joi
+  
+  unitaryRequired: Joi
+    .string()
+    .min(3)
     .required(),
   unitary: Joi
     .string()
     .min(3),
-  unitaryRequired: Joi
+
+  valuesRequired: Joi
+    .number()
+    .positive()
     .required(),
   values: Joi
     .number()
     .positive(),
-  valuesRequired: Joi
-    .required(),
-  quantity: Joi
+
+  quantityRequired: Joi
     .number()
     .positive()
     .required(),
-  ingredients: Joi
+  quantity: Joi
+    .number()
+    .positive(),
+
+  ingredientsRequired: Joi
     .array()
       .items({
         id: Joi
@@ -53,32 +86,21 @@ const schemas = {
           .positive()
           .required(),
       }),
+  ingredients: Joi
+  .array()
+    .items({
+      id: Joi
+        .objectId()
+        .required(),
+      name: Joi
+        .string()
+        .min(5),
+      quantity: Joi
+        .number()
+        .positive(),
+    }),
 };
-
-const { email, password, fullName, id } = schemas;
-
-const loginSchema = Joi.object({
-  email,
-  password,
-});
-
-const usersSchema = Joi.object({
-  id,
-  fullName,
-  email,
-  password,
-});
-
-const ingredientsSchema = Joi.object({
-  id,
-  fullName,
-  email,
-  password,
-});
 
 module.exports = {
   schemas,
-  loginSchema,
-  usersSchema,
-  ingredientsSchema,
 };
