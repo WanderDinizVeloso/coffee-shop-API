@@ -1,7 +1,9 @@
 const express = require('express');
 
 const { create, remove, searchAll, searchById, update, upload } = require('../documents/products');
-const { wrapper, authentication, admAuthorization, upload: uploadMidd } = require('../middlewares');
+const {
+  wrapper, authentication, admAuthorization, upload: uploadMidd, validateProducts,
+} = require('../middlewares');
 
 const router = express.Router({ mergeParams: true });
 
@@ -18,6 +20,7 @@ router.get('/:id', wrapper([
 router.post('/', wrapper([
   authentication,
   admAuthorization,
+  validateProducts,
   create,
 ]));
 
