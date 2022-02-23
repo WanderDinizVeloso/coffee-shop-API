@@ -106,7 +106,8 @@ Este projeto esta sobe a licença [MIT](https://pt.wikipedia.org/wiki/Licen%C3%A
 Visando constante aprimoramento, destaco alguns objetivos que eu alinhei comigo mesmo para desempenhar a cada dia melhorar minhas habilidades como desenvolvedor Back-end: 
 
 - Aprender mais sobre o validador Joi, ou outro semelhante, para melhor eficiência e agilidade no desenvolvimento das validações de meus projetos;
-- Estudar e colocar em pratica, a cada dia mais, os testes dos softwares desenvolvidos, visando sempre pela qualidade da aplicação;
+- Estudar e implementar os tests, visando sempre pela qualidade da aplicação;
+- Estudar e implementar o swagger, ou outra ferramenta de documentação.
 
 ---
 
@@ -298,7 +299,10 @@ Para rodar o projeto, você vai precisar instalar as seguintes ferramentas:
 
     ```bash
     # Clone este repositório
-    $ git clone 
+     # via HTTPS
+    $ git clone https://github.com/WanderDinizVeloso/coffee-shop-API.git
+      # via SSH
+    $ git clone git@github.com:WanderDinizVeloso/coffee-shop-API.git
 
     # Acesse a pasta do projeto no terminal/cmd
     $ cd coffee-shop-API
@@ -342,7 +346,7 @@ Para rodar o projeto, você vai precisar instalar as seguintes ferramentas:
 
   O deploy da API foi hospedada no heroku e o banco mongoDB hospedado no Atlas.
 
-  - link: []()
+  - link: [https://coffee-shop-api-deploy.herokuapp.com/](https://coffee-shop-api-deploy.herokuapp.com/)
 
   - Faça as requisições pelo [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) ou outro de sua preferência;
 
