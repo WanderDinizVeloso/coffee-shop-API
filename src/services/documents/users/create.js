@@ -21,3 +21,11 @@ module.exports = async ({ fullName, email, password }) => {
 
   return newUserWithoutPassword;
 };
+
+/*
+
+no users create os usuário são criado somente com 'role = user'
+para efetuar a troca para admin, é necessário efetuar o login como 'master' (com os dados
+do .env) e logo apos efetuar o update de usuário passando somente o id no req.params
+
+*/

@@ -8,3 +8,10 @@ module.exports = (email, password) => {
 
   return null;
 };
+
+/*
+
+Função que verifica verifica se o password e senha são os mesmo incluído o .env do projeto.
+Caso seja, repassa os dados de email e role para criação do token;
+
+*/

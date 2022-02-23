@@ -21,3 +21,12 @@ module.exports = async ({ name, unity, price }) => {
 
   return newIngredient;
 };
+
+/*
+
+OBSERVAÇÃO: para adicionar a quantidade nos ingredientes, é necessário efetuar o
+update do ingrediente com os valores desejado
+O valores são somado ao estoque, ou seja, se existe 10 de estoque, caso efetue o update
+de 'quantity: 100' o saldo passará para 110.
+
+*/

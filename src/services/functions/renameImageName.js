@@ -9,3 +9,10 @@ module.exports = (id, file) => {
 
   return newImageName;
 };
+
+/*
+
+Função utilizada para renomear o nome da imagem, efetuando a troca para o id do produto
+cadastradoEfetua a busca dos dados necessário para gerar o custo total do produto
+
+ */

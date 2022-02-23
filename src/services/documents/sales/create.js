@@ -20,3 +20,12 @@ module.exports = async ({ productId, quantity }) => {
 
   return sales;
 };
+
+/*
+
+Na criação da venda será:
+ - verificado se existe ingredientes suficientes para a venda do produto
+ - caso exista saldo, ao efetuar a compra, é efetuada a dedução no estoque
+ dos ingredientes.
+
+*/

@@ -16,4 +16,4 @@ module.exports = async ({ id, role, token }) => {
   return user;
 };
 
-// create({ token }) envia o token do usuário para blackList. vide services/auth/verifyToken.  
+// create({ token }) envia o token do usuário removido para blackList. vide services/auth/verifyToken.  
