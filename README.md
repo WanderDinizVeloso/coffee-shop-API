@@ -135,9 +135,153 @@ Visando constante aprimoramento, destaco alguns objetivos que eu alinhei comigo 
 
 O projeto está organizado e estruturado da seguinte maneira:
 
+```bash
+├── src
+├── .env
+├── README.md
+├── temp
+│    └── images
+└── src
+      ├── api
+      │   ├── app.js
+      │   └── server.js
+      ├── controllers
+      │   ├── documents
+      │   │   ├── components
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   └── update.js
+      │   │   ├── ingredients
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   └── update.js
+      │   │   ├── login
+      │   │   │   ├── index.js
+      │   │   │   └── login.js
+      │   │   ├── products
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   ├── update.js
+      │   │   │   └── upload.js
+      │   │   ├── sales
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   └── searchAll.js
+      │   │   └── users
+      │   │       ├── create.js
+      │   │       ├── index.js
+      │   │       ├── remove.js
+      │   │       └── update.js
+      │   ├── middlewares
+      │   │   ├── auth
+      │   │   │   ├── admAuthorization.js
+      │   │   │   ├── authentication.js
+      │   │   │   └── userAuthorization.js
+      │   │   ├── error
+      │   │   │   └── index.js
+      │   │   ├── index.js
+      │   │   ├── upload
+      │   │   │   └── index.js
+      │   │   ├── validations
+      │   │   │   ├── validateComponents.js
+      │   │   │   ├── validateId.js
+      │   │   │   ├── validateIngredients.js
+      │   │   │   ├── validateLogin.js
+      │   │   │   ├── validateProducts.js
+      │   │   │   ├── validateSales.js
+      │   │   │   └── validateUsers.js
+      │   │   └── wrapper
+      │   │       └── index.js
+      │   ├── routers
+      │   │   ├── components.js
+      │   │   ├── ingredients.js
+      │   │   ├── login.js
+      │   │   ├── products.js
+      │   │   ├── root.js
+      │   │   ├── sales.js
+      │   │   └── users.js
+      │   └── statusAndMessage
+      │       └── index.js
+      ├── models
+      │   ├── connection.js
+      │   ├── documents
+      │   │   ├── create.js
+      │   │   ├── remove.js
+      │   │   ├── searchAll.js
+      │   │   ├── searchByField.js
+      │   │   ├── searchById.js
+      │   │   └── update.js
+      │   └── index.js
+      ├── services
+      │   ├── auth
+      │   │   ├── getToken.js
+      │   │   ├── index.js
+      │   │   └── verifyToken.js
+      │   ├── documents
+      │   │   ├── components
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   └── update.js
+      │   │   ├── ingredients
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   └── update.js
+      │   │   ├── login
+      │   │   │   ├── index.js
+      │   │   │   └── login.js
+      │   │   ├── products
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   ├── remove.js
+      │   │   │   ├── searchAll.js
+      │   │   │   ├── searchById.js
+      │   │   │   ├── update.js
+      │   │   │   └── upload.js
+      │   │   ├── sales
+      │   │   │   ├── create.js
+      │   │   │   ├── index.js
+      │   │   │   └── searchAll.js
+      │   │   └── users
+      │   │       ├── create.js
+      │   │       ├── index.js
+      │   │       ├── remove.js
+      │   │       └── update.js
+      │   └── functions
+      │       ├── changePermissions.js
+      │       ├── checkMasterPermissions.js
+      │       ├── checkNewEmailOnDatabase.js
+      │       ├── checkNewNameOnDatabase.js
+      │       ├── filterNull.js
+      │       ├── generateIngredientNameList.js
+      │       ├── generateProductCost.js
+      │       ├── index.js
+      │       ├── renameImageName.js
+      │       ├── setDecimalPlaces.js
+      │       ├── stockUpdate.js
+      │       └── stringInNumber.js
+      └── utils
+         ├── lists.js
+         ├── magicNumbers.js
+         ├── strings.js
+         └── validationsSchema.js
 
+```
 ---
-
 
 # Pré-requisitos
 
