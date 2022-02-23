@@ -281,7 +281,6 @@ O projeto está organizado e estruturado da seguinte maneira:
          └── validationsSchema.js
 
 ```
----
 
 # Pré-requisitos
 
@@ -318,6 +317,8 @@ Para rodar o projeto, você vai precisar instalar as seguintes ferramentas:
     - EXPIRES_IN: tempo de duração dos tokens gerados. (ex. `1d`)
     - ALGORITHM: algoritmo de criptografia do token. (ex. `HS256`)
     - BCRYPT_SALT_ROUNDS: utilizado para proteção do password. (ex. 8)
+    - MASTER_EMAIL: email que terá poderes para troca do 'role' do usuário
+    - MASTER_PASSWORD: password que terá poderes para troca do 'role' do usuário
 
 
   >⚠️ ATENÇÃO ⚠️
