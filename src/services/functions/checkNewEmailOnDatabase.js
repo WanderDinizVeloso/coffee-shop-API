@@ -10,3 +10,11 @@ module.exports = async (newEmail, emailData) => {
 
   return null;
 };
+
+/*
+
+visando deixar o email único no banco de dados, ao efetuar um update de um conta,
+caso o email seja trocado, é feita uma verificação para constatar se o novo email
+existe no banco de dados.
+
+*/

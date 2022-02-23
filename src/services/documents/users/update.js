@@ -37,3 +37,10 @@ module.exports = async ({ id, fullName, email, password, masterRole }) => {
 
   return { newUserData: newUserDataWithoutPassword };
 };
+
+/*
+
+com a autorização 'master' é possível efetuar a troca do role do usuário de 'user' para
+'master'
+
+*/
