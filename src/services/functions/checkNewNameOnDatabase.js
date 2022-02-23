@@ -7,3 +7,11 @@ module.exports = async (newName, nameData, searchByField) => {
 
   return null;
 };
+
+/*
+
+Visando deixar o nome do produto ou ingrediente único no banco de dados, ao efetuar um 
+update, caso o name seja trocado, é feita uma verificação para constatar 
+se o novo nome existe no banco de dados.
+
+*/

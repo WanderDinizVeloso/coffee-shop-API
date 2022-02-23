@@ -8,3 +8,9 @@ module.exports = async (req, _res, next) => {
   
   return next();
 };
+
+/*
+
+middleware utilizado para limitar o acesso da toda ao usuários 'admin' 
+
+*/
