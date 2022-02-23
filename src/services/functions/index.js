@@ -9,6 +9,7 @@ const filterNull = require('./filterNull');
 const stockUpdate = require('./stockUpdate');
 const checkMasterPermissions = require('./checkMasterPermissions');
 const changePermissions = require('./changePermissions');
+const generateUrl = require('./generateUrl');
 
 module.exports = {
   stringInNumber,
@@ -22,4 +23,5 @@ module.exports = {
   stockUpdate,
   checkMasterPermissions,
   changePermissions,
+  generateUrl,
 };
