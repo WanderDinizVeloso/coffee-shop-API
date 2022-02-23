@@ -1,7 +1,9 @@
 const multer = require('multer');
 const path = require('path');
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
 
-const { STORAGE_TYPE } = process.env;
+const { STORAGE_TYPE, BUCKET_NAME } = process.env;
 
 const destination = path.resolve(__dirname, '../../../../temp/images');
 
@@ -11,20 +13,29 @@ const { IMAGE, CONTENT_LENGTH } = require('../../../utils/strings');
 const { imageTypeList } = require('../../../utils/lists');
 const { IMAGE_MAX_SIZE } = require('../../../utils/magicNumbers');
 
+const fileNameConfig = (req, file, callback) => {
+  const { id } = req.params;
+
+  const newImageName = renameImageName(id, file);
+
+  req.imageName = newImageName;
+
+  callback(null, newImageName);
+};
+
 const storageTypes = {
   local: multer.diskStorage({
     destination: (_req, _file, callback) => {
       callback(null, destination);
     },
-    filename: (req, file, callback) => {
-      const { id } = req.params;
-  
-      const newImageName = renameImageName(id, file);
-  
-      req.imageName = newImageName;
-  
-      callback(null, newImageName);
-    },
+    filename: fileNameConfig,
+  }),
+  s3: multerS3({
+    s3: new aws.S3(),
+    bucket: BUCKET_NAME,
+    contentType: multerS3.AUTO_CONTENT_TYPE,
+    acl: 'public-read',
+    key: fileNameConfig,
   }),
 };
 

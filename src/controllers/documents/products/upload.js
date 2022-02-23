@@ -5,13 +5,7 @@ const { notFound, modifiedSuccessfully } = require('../../statusAndMessage');
 const { PRODUCT } = require('../../../utils/strings');
 
 module.exports = async (req, res, next) => {
-  const { id } = req.params;
-  const { host } = req.headers;
-  const { imageName: image, protocol } = req;
-
-  const url = `${protocol}://${host}/images/${image}`;
-
-  const updated = await upload({ id, url });
+  const updated = await upload({ req });
 
   if (!updated) return next(notFound(PRODUCT));
   
