@@ -11,8 +11,9 @@ const { error } = require('../controllers/middlewares');
 const app = express();
 
 app.use(cors());
-app.use('/images', express.static(path.join(__dirname, '../../temp/images')));
 app.use(json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/images', express.static(path.join(__dirname, '../../temp/images')));
 app.use(root);
 app.use(error);
 

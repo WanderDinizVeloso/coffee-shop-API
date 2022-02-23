@@ -23,6 +23,7 @@ const SALE = 'sale';
 const SALES = 'sales';
 const MASTER_ROLE = 'master';
 const PUT = 'PUT';
+const LOCAL = 'local';
 
 module.exports = {
   TOKEN,
@@ -50,4 +51,5 @@ module.exports = {
   SALES,
   MASTER_ROLE,
   PUT,
+  LOCAL,
 };
