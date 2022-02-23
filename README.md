@@ -137,7 +137,6 @@ Visando constante aprimoramento, destaco alguns objetivos que eu alinhei comigo 
 O projeto está organizado e estruturado da seguinte maneira:
 
 ```bash
-├── src
 ├── .env
 ├── README.md
 ├── temp
@@ -270,6 +269,7 @@ O projeto está organizado e estruturado da seguinte maneira:
       │       ├── filterNull.js
       │       ├── generateIngredientNameList.js
       │       ├── generateProductCost.js
+      │       ├── generateUrl.js
       │       ├── index.js
       │       ├── renameImageName.js
       │       ├── setDecimalPlaces.js
@@ -280,6 +280,7 @@ O projeto está organizado e estruturado da seguinte maneira:
          ├── magicNumbers.js
          ├── strings.js
          └── validationsSchema.js
+
 
 ```
 
@@ -340,7 +341,7 @@ Para rodar o projeto, você vai precisar instalar as seguintes ferramentas:
 
  - Faça as requisições pelo [Postman](https://www.postman.com/), [Insomnia](https://insomnia.rest/) ou outro de sua preferência;
 
-## Rodando no servidor heroku e Atlas
+## Rodando no heroku (para a API), no Atlas (para o banco) e no Amazon s3 (para upload das imagens)
 
   Não quer rodar localmente? Você pode acessar o projeto hospedado no heroku!`:)`
 
