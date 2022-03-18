@@ -2,3 +2,4 @@
 .env
 /temp/images/*
 !/temp/images/.gitkeep
+/coverage
