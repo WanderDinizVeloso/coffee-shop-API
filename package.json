@@ -1,12 +1,12 @@
 {
   "name": "coffee-shop-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projeto criado para colocar em prática os conhecimentos adquiridos em Back-end, onde crio uma API REST para cadastro/leitura de usuários, ingredientes, produtos, componentes e vendas",
   "main": "index.js",
   "scripts": {
     "start": "node ./src/api/server.js",
     "dev": "nodemon ./src/api/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,11 @@
   },
   "homepage": "https://github.com/WanderDinizVeloso/coffee-shop-API#readme",
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "@types/jest": "^27.4.1",
+    "jest": "^27.5.1",
+    "mongodb-memory-server": "^8.4.1",
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
