@@ -40,5 +40,20 @@ describe('DEL /users tests', () => {
 
     expect(response.body).toHaveProperty('message');
     expect(response.body.message).toBe("'user' deleted successfully,");
+
+    expect(response.body).toHaveProperty('deletedUser');
+
+    expect(response.body.deletedUser).toHaveProperty('_id');
+
+    expect(response.body.deletedUser).toHaveProperty('fullName');
+    expect(response.body.deletedUser.fullName).toBe('FulName Test');
+    
+    expect(response.body.deletedUser).toHaveProperty('email');
+    expect(response.body.deletedUser.email).toBe('test@test.com.br');
+    
+    expect(response.body.deletedUser).toHaveProperty('role');
+    expect(response.body.deletedUser.role).toBe('user');
+
+    expect(response.body.deletedUser).not.toHaveProperty('password');
   });
 });
