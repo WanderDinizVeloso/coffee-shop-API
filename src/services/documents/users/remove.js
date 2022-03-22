@@ -13,7 +13,9 @@ module.exports = async ({ id, role, token }) => {
     await create({ token });
   }
 
-  return user;
+  const { password: pass, ...userWithoutPassword } = user;
+
+  return userWithoutPassword;
 };
 
 // create({ token }) envia o token do usuário removido para blackList. vide services/auth/verifyToken.  
