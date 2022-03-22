@@ -35,7 +35,7 @@ module.exports = async ({ id, fullName, email, password, masterRole }) => {
 
   const { password: pass, ...newUserDataWithoutPassword } = await searchById(id);
 
-  return { newUserData: newUserDataWithoutPassword };
+  return newUserDataWithoutPassword;
 };
 
 /*
