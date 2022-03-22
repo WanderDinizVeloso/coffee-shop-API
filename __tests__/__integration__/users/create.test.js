@@ -44,31 +44,4 @@ describe('POST /users tests', () => {
 
     expect(response.body.createdUser).not.toHaveProperty('password');
   });
-
-  it('should return "email is already." when email already exists in the database', async () => {
-    const req = await request(app);
-
-    await req
-      .post('/users')
-      .send({
-        fullName: "FulName Test",
-        email: "test@test.com.br",
-        password: "T1234567890!"
-      });
-
-    const response = await req
-      .post('/users')
-      .send({
-        fullName: "FulName Test",
-        email: "test@test.com.br",
-        password: "T1234567890!"
-      });
-
-    expect(response.statusCode).toBe(409);
-
-    expect(response.body).toHaveProperty('error');
-
-    expect(response.body.error).toHaveProperty('message');
-    expect(response.body.error.message).toBe("'email' is already.");
-  });
 });
